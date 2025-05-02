@@ -4,7 +4,7 @@ import WordPracticeCard from "./word-practice-card";
 import { FinishPracticeScreen } from "./finish-practice-screen";
 import { Card } from "@/generated/prisma";
 
-export const WordCarousel = ({ wordCards }: { wordCards?: Card[] }) => {
+export const WordCarousel = ({ wordCards }: { wordCards: Card[] }) => {
     const [mistakesCount, setMistakesCount] = useState(0);
     const [index, setIndex] = useState(0);
     const [isDone, setIsDone] = useState(false);
@@ -16,11 +16,15 @@ export const WordCarousel = ({ wordCards }: { wordCards?: Card[] }) => {
         } else {
             setIndex((prev) => prev + 1);
         }
-    }, [index, wordCards.length]);
+    }, [index, wordCards?.length]);
 
     const handleMistake = useCallback(() => {
         setMistakesCount((prev) => prev + 1)
     }, [])
+
+    if (!currentCard) {
+        return null;
+    }
 
     return (
         <>

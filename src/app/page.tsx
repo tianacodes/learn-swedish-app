@@ -9,10 +9,15 @@ export default async function Home() {
       cards: true, // Fetch related cards
     },
   });
+  const wordCards = wordCardsByCategory?.cards;
+
+  if (!wordCards) {
+    return null;
+  }
 
   return (
     <div className="container mx-auto max-w-2xl pt-20">
-      <WordCarousel wordCards={wordCardsByCategory?.cards} />
+      <WordCarousel wordCards={wordCards} />
     </div>
   );
 }
