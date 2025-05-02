@@ -5,16 +5,18 @@ export async function checkInput(
     wordId: string;
     message: string;
     status: string;
+    answer: string;
   },
   formData: FormData
 ) {
   const wordQuery = formData.get("word_query");
 
-  if (wordQuery === "hello") {
+  if (wordQuery === formState.answer) {
       return {
         wordId: formState.wordId,
+        answer: formState.answer,
         message: "Success!",
-        status: "success"
+        status: "success",
       }
     } else {
       // Add a fake delay to make waiting noticeable.
@@ -23,8 +25,9 @@ export async function checkInput(
       });
       return {
         wordId: formState.wordId,
+        answer: formState.answer,
         message: "Incorrect!",
-        status: "error"
+        status: "error",
       }
     }
 }
