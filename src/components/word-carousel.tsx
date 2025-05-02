@@ -2,26 +2,21 @@
 import { useCallback, useState } from "react";
 import WordPracticeCard from "./word-practice-card";
 import { FinishPracticeScreen } from "./finish-practice-screen";
+import { Card } from "@/generated/prisma";
 
-const cards = [
-    { id: "1", term: "en släk", answer: "relative" },
-    { id: "2", term: "en bror", answer: "brother" },
-    { id: "3", term: "en syster", answer: "sister" },
-];
-
-export const WordCarousel = () => {
+export const WordCarousel = ({ wordCards }: { wordCards?: Card[] }) => {
     const [mistakesCount, setMistakesCount] = useState(0);
     const [index, setIndex] = useState(0);
     const [isDone, setIsDone] = useState(false);
-    const currentCard = cards[index];
+    const currentCard = wordCards[index];
 
     const handleClick = useCallback(() => {
-        if (index === cards.length - 1) {
+        if (index === wordCards.length - 1) {
             setIsDone(true);
         } else {
             setIndex((prev) => prev + 1);
         }
-    }, [index]);
+    }, [index, wordCards.length]);
 
     const handleMistake = useCallback(() => {
         setMistakesCount((prev) => prev + 1)
@@ -31,13 +26,13 @@ export const WordCarousel = () => {
         <>
             <div className="pb-16 flex flex-row justify-between">
                 <h1 className="font-bold">Category: Familjen</h1>
-                <span className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300">Mistakes: {mistakesCount}/{cards.length}</span>
+                <span className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300">Mistakes: {mistakesCount}/{wordCards.length}</span>
             </div>
             <div className="flex flex-col gap-4">
                 {!isDone ? (
                     <div className="w-full relative mx-auto flex max-w-2xl items-center rounded-xl bg-white p-10 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
                         <div className="absolute top-5 right-5">
-                            <p className="text-gray-500">{index + 1}/{cards.length}</p>
+                            <p className="text-gray-500">{index + 1}/{wordCards.length}</p>
                         </div>
                         <WordPracticeCard
                             key={currentCard.id}

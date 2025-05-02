@@ -10,7 +10,7 @@ export default function WordPracticeCard({
     handleClick,
     handleMistake
 }: {
-    id: string;
+    id: number;
     term: string;
     answer: string;
     handleClick: () => void;

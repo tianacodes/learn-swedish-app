@@ -117,10 +117,17 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug'
+};
+
 exports.Prisma.CardScalarFieldEnum = {
   id: 'id',
   term: 'term',
-  answer: 'answer'
+  answer: 'answer',
+  categoryId: 'categoryId'
 };
 
 exports.Prisma.SortOrder = {
@@ -130,6 +137,7 @@ exports.Prisma.SortOrder = {
 
 
 exports.Prisma.ModelName = {
+  Category: 'Category',
   Card: 'Card'
 };
 

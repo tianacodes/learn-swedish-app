@@ -2,7 +2,7 @@
 
 export async function checkInput(
   formState: {
-    wordId: string;
+    wordId: number;
     message: string;
     status: string;
     answer: string;
