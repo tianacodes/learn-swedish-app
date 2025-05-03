@@ -19,9 +19,9 @@ model Category {
 }
 
 model Card {
-  id         Int      @id @default(autoincrement())
-  term       String
-  answer     String
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId Int
+  id           Int      @id @default(autoincrement())
+  term         String
+  answer       String
+  categorySlug String // this replaces categoryId
+  category     Category @relation(fields: [categorySlug], references: [slug])
 }

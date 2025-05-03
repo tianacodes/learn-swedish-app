@@ -20,6 +20,38 @@ async function main() {
     },
   });
 
+  await prisma.category.upsert({
+    where: { slug: "kroppen" },
+    update: {},
+    create: {
+      name: "Kroppen",
+      slug: "kroppen",
+      cards: {
+        create: [
+          { term: "en panna", answer: "forehead" },
+          { term: "ett ögonbryn", answer: "eyebrow" },
+          { term: "en mun", answer: "mouth" },
+          { term: "en hals", answer: "neck" },
+          { term: "en navel", answer: "navel" },
+          { term: "en handled", answer: "wrist" },
+        ],
+      },
+    },
+  });
+
+  await prisma.category.upsert({
+    where: { slug: "mistakes" },
+    update: {},
+    create: {
+      name: "Mistakes",
+      slug: "mistakes",
+      cards: {
+        create: [
+        ],
+      },
+    },
+  });
+
   console.log("Seeded database with default categories and cards");
 }
 
