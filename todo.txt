@@ -1,0 +1,10 @@
+Add a hint modal
+++ Add mistakes counter
+++ Add mistakes to "Mistakes" category
+Practice mistakes in Mistakes category:
+    - if correctly answered remove mistakes from "Mistakes category"
+++ Add words counter to each category in Categories view
+Add opportunity to add a new category and words
+Add opportunity to see as a list all the words in each category with a translation (Dictionary view)
+Shuffle cards functionality
+Add "You have no mistakes" text if no mistakes
