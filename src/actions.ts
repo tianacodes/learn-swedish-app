@@ -1,33 +1,56 @@
 "use server";
+import { db } from "@/db";
 
 export async function checkInput(
   formState: {
-    wordId: number;
     message: string;
     status: string;
+    term: string;
     answer: string;
+    categorySlug: string;
   },
   formData: FormData
 ) {
   const wordQuery = formData.get("word_query");
+  const defaultReturnProps = {
+    term: formState.term,
+    categorySlug: formState.categorySlug,
+    answer: formState.answer,
+  };
 
   if (wordQuery === formState.answer) {
-      return {
-        wordId: formState.wordId,
-        answer: formState.answer,
-        message: "Success!",
-        status: "success",
-      }
-    } else {
-      // Add a fake delay to make waiting noticeable.
-      await new Promise(resolve => {
-        setTimeout(resolve, 2000);
+    return {
+      ...defaultReturnProps,
+      message: "Success!",
+      status: "success",
+    };
+  } else {
+    const existingMistake = await db.card.findFirst({
+      where: {
+        term: formState.term,
+        category: {
+          slug: "mistakes",
+        },
+      },
+    });
+
+    if (!existingMistake) {
+      await db.category.update({
+        where: { slug: "mistakes" },
+        data: {
+          cards: {
+            create: {
+              term: formState.term,
+              answer: formState.answer,
+            },
+          },
+        },
       });
-      return {
-        wordId: formState.wordId,
-        answer: formState.answer,
-        message: "Incorrect!",
-        status: "error",
-      }
     }
+    return {
+      ...defaultReturnProps,
+      message: "Incorrect!",
+      status: "error",
+    };
+  }
 }
