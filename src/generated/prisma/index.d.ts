@@ -2080,66 +2080,62 @@ export namespace Prisma {
 
   export type CardAvgAggregateOutputType = {
     id: number | null
-    categoryId: number | null
   }
 
   export type CardSumAggregateOutputType = {
     id: number | null
-    categoryId: number | null
   }
 
   export type CardMinAggregateOutputType = {
     id: number | null
     term: string | null
     answer: string | null
-    categoryId: number | null
+    categorySlug: string | null
   }
 
   export type CardMaxAggregateOutputType = {
     id: number | null
     term: string | null
     answer: string | null
-    categoryId: number | null
+    categorySlug: string | null
   }
 
   export type CardCountAggregateOutputType = {
     id: number
     term: number
     answer: number
-    categoryId: number
+    categorySlug: number
     _all: number
   }
 
 
   export type CardAvgAggregateInputType = {
     id?: true
-    categoryId?: true
   }
 
   export type CardSumAggregateInputType = {
     id?: true
-    categoryId?: true
   }
 
   export type CardMinAggregateInputType = {
     id?: true
     term?: true
     answer?: true
-    categoryId?: true
+    categorySlug?: true
   }
 
   export type CardMaxAggregateInputType = {
     id?: true
     term?: true
     answer?: true
-    categoryId?: true
+    categorySlug?: true
   }
 
   export type CardCountAggregateInputType = {
     id?: true
     term?: true
     answer?: true
-    categoryId?: true
+    categorySlug?: true
     _all?: true
   }
 
@@ -2233,7 +2229,7 @@ export namespace Prisma {
     id: number
     term: string
     answer: string
-    categoryId: number
+    categorySlug: string
     _count: CardCountAggregateOutputType | null
     _avg: CardAvgAggregateOutputType | null
     _sum: CardSumAggregateOutputType | null
@@ -2259,7 +2255,7 @@ export namespace Prisma {
     id?: boolean
     term?: boolean
     answer?: boolean
-    categoryId?: boolean
+    categorySlug?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["card"]>
 
@@ -2267,7 +2263,7 @@ export namespace Prisma {
     id?: boolean
     term?: boolean
     answer?: boolean
-    categoryId?: boolean
+    categorySlug?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["card"]>
 
@@ -2275,7 +2271,7 @@ export namespace Prisma {
     id?: boolean
     term?: boolean
     answer?: boolean
-    categoryId?: boolean
+    categorySlug?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["card"]>
 
@@ -2283,10 +2279,10 @@ export namespace Prisma {
     id?: boolean
     term?: boolean
     answer?: boolean
-    categoryId?: boolean
+    categorySlug?: boolean
   }
 
-  export type CardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "term" | "answer" | "categoryId", ExtArgs["result"]["card"]>
+  export type CardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "term" | "answer" | "categorySlug", ExtArgs["result"]["card"]>
   export type CardInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }
@@ -2306,7 +2302,7 @@ export namespace Prisma {
       id: number
       term: string
       answer: string
-      categoryId: number
+      categorySlug: string
     }, ExtArgs["result"]["card"]>
     composites: {}
   }
@@ -2734,7 +2730,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Card", 'Int'>
     readonly term: FieldRef<"Card", 'String'>
     readonly answer: FieldRef<"Card", 'String'>
-    readonly categoryId: FieldRef<"Card", 'Int'>
+    readonly categorySlug: FieldRef<"Card", 'String'>
   }
     
 
@@ -3171,7 +3167,7 @@ export namespace Prisma {
     id: 'id',
     term: 'term',
     answer: 'answer',
-    categoryId: 'categoryId'
+    categorySlug: 'categorySlug'
   };
 
   export type CardScalarFieldEnum = (typeof CardScalarFieldEnum)[keyof typeof CardScalarFieldEnum]
@@ -3268,7 +3264,7 @@ export namespace Prisma {
     id?: IntFilter<"Card"> | number
     term?: StringFilter<"Card"> | string
     answer?: StringFilter<"Card"> | string
-    categoryId?: IntFilter<"Card"> | number
+    categorySlug?: StringFilter<"Card"> | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
   }
 
@@ -3276,7 +3272,7 @@ export namespace Prisma {
     id?: SortOrder
     term?: SortOrder
     answer?: SortOrder
-    categoryId?: SortOrder
+    categorySlug?: SortOrder
     category?: CategoryOrderByWithRelationInput
   }
 
@@ -3287,7 +3283,7 @@ export namespace Prisma {
     NOT?: CardWhereInput | CardWhereInput[]
     term?: StringFilter<"Card"> | string
     answer?: StringFilter<"Card"> | string
-    categoryId?: IntFilter<"Card"> | number
+    categorySlug?: StringFilter<"Card"> | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
   }, "id">
 
@@ -3295,7 +3291,7 @@ export namespace Prisma {
     id?: SortOrder
     term?: SortOrder
     answer?: SortOrder
-    categoryId?: SortOrder
+    categorySlug?: SortOrder
     _count?: CardCountOrderByAggregateInput
     _avg?: CardAvgOrderByAggregateInput
     _max?: CardMaxOrderByAggregateInput
@@ -3310,7 +3306,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Card"> | number
     term?: StringWithAggregatesFilter<"Card"> | string
     answer?: StringWithAggregatesFilter<"Card"> | string
-    categoryId?: IntWithAggregatesFilter<"Card"> | number
+    categorySlug?: StringWithAggregatesFilter<"Card"> | string
   }
 
   export type CategoryCreateInput = {
@@ -3366,7 +3362,7 @@ export namespace Prisma {
     id?: number
     term: string
     answer: string
-    categoryId: number
+    categorySlug: string
   }
 
   export type CardUpdateInput = {
@@ -3379,14 +3375,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     term?: StringFieldUpdateOperationsInput | string
     answer?: StringFieldUpdateOperationsInput | string
-    categoryId?: IntFieldUpdateOperationsInput | number
+    categorySlug?: StringFieldUpdateOperationsInput | string
   }
 
   export type CardCreateManyInput = {
     id?: number
     term: string
     answer: string
-    categoryId: number
+    categorySlug: string
   }
 
   export type CardUpdateManyMutationInput = {
@@ -3398,7 +3394,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     term?: StringFieldUpdateOperationsInput | string
     answer?: StringFieldUpdateOperationsInput | string
-    categoryId?: IntFieldUpdateOperationsInput | number
+    categorySlug?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3504,31 +3500,29 @@ export namespace Prisma {
     id?: SortOrder
     term?: SortOrder
     answer?: SortOrder
-    categoryId?: SortOrder
+    categorySlug?: SortOrder
   }
 
   export type CardAvgOrderByAggregateInput = {
     id?: SortOrder
-    categoryId?: SortOrder
   }
 
   export type CardMaxOrderByAggregateInput = {
     id?: SortOrder
     term?: SortOrder
     answer?: SortOrder
-    categoryId?: SortOrder
+    categorySlug?: SortOrder
   }
 
   export type CardMinOrderByAggregateInput = {
     id?: SortOrder
     term?: SortOrder
     answer?: SortOrder
-    categoryId?: SortOrder
+    categorySlug?: SortOrder
   }
 
   export type CardSumOrderByAggregateInput = {
     id?: SortOrder
-    categoryId?: SortOrder
   }
 
   export type CardCreateNestedManyWithoutCategoryInput = {
@@ -3711,7 +3705,7 @@ export namespace Prisma {
     id?: IntFilter<"Card"> | number
     term?: StringFilter<"Card"> | string
     answer?: StringFilter<"Card"> | string
-    categoryId?: IntFilter<"Card"> | number
+    categorySlug?: StringFilter<"Card"> | string
   }
 
   export type CategoryCreateWithoutCardsInput = {
