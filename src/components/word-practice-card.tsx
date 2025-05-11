@@ -46,6 +46,9 @@ export default function WordPracticeCard({
 
     useEffect(() => {
         if (state.status === INPUT_STATUS.SUCCESS) {
+            // if (categorySlug === "mistakes") {
+            //     handleTrainedMistakes()
+            // }
             setTimeout(() => { }, 500);
             handleClick();
         }

@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import WordPracticeCard from "./word-practice-card";
-import { FinishPracticeScreen } from "./finish-practice-screen";
+import { FinishPracticeScreen } from "./finish-practice-screen/finish-practice-screen";
 import { Category, Card } from "@/generated/prisma";
 
 export const WordCarousel = ({ categoryData }: {
