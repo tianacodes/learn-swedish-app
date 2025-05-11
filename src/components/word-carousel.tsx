@@ -73,8 +73,8 @@ export const WordCarousel = ({ categoryData }: {
     if (!isReady) return <div>Loading...</div>;
 
     return (
-        <>
-            <div className="pb-16 flex flex-row justify-between">
+        <div className="flex flex-col gap-8">
+            <div className="flex flex-row justify-between">
                 <h1 className="text-2xl font-bold">Category: {categoryData.name}</h1>
                 <span className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300">Mistakes: {mistakesCount}</span>
             </div>
@@ -98,6 +98,6 @@ export const WordCarousel = ({ categoryData }: {
                     <FinishPracticeScreen mistakes={`${mistakesCount}/${categoryData.cards.length}`} handleCategoryPracticeRestart={handleCategoryPracticeRestart} />
                 ) : null}
             </div>
-        </>
+        </div>
     );
 };
