@@ -1,0 +1,9 @@
+name: Second Action
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Phrase
+        run: echo "What a lovely day"
+        
