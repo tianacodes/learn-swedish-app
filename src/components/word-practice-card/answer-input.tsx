@@ -1,3 +1,9 @@
+const messageSuccessClasses =
+    "mt-2 text-sm text-green-600 dark:text-green-500";
+const messageErrorClasses = "mt-2 text-sm text-red-600 dark:text-red-500";
+const inputClasses =
+    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+
 export function AnswerInput({
     inputRef,
     message,
@@ -8,15 +14,8 @@ export function AnswerInput({
     status: string;
 }) {
     const showMessage = status === "error";
-    const messageSuccessClasses =
-        "mt-2 text-sm text-green-600 dark:text-green-500";
-    const messageErrorClasses = "mt-2 text-sm text-red-600 dark:text-red-500";
-
     const messageStyles =
-        status === "error" ? messageErrorClasses : messageSuccessClasses;
-
-    const inputClasses =
-        "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+        showMessage ? messageErrorClasses : messageSuccessClasses;
 
     return (
         <div>
@@ -27,6 +26,7 @@ export function AnswerInput({
                 Answer:
             </label>
             <input
+                id="word_query"
                 ref={inputRef}
                 autoComplete="off"
                 type="text"

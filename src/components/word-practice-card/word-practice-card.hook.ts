@@ -2,7 +2,7 @@ import { INPUT_STATUS } from "@/types";
 import { useActionState, useState, useEffect } from "react";
 import { checkInput } from "@/actions";
 
-type UseWordPracticeType = {
+export type UseWordPracticeType = {
     handleClick: () => void;
     handleMistake: () => void
     categorySlug: string;
@@ -29,17 +29,24 @@ export const useWordPracticeCard = ({
     // const [showHint, setShowHint] = useState(false);
 
     useEffect(() => {
+        let timerId: NodeJS.Timeout | undefined;
+
         if (state.status === INPUT_STATUS.SUCCESS) {
-            // if (categorySlug === "mistakes") {
-            //     handleTrainedMistakes()
-            // }
-            setTimeout(() => { }, 500);
-            handleClick();
+            timerId = setTimeout(() => {
+                handleClick();
+            }, 500);
         }
+
         if (state.status === INPUT_STATUS.ERROR && !hasDoneMistake) {
             handleMistake();
             setHasDoneMistake(true);
         }
+
+        return () => {
+            if (timerId) {
+                clearTimeout(timerId);
+            }
+        };
     }, [state, handleClick, handleMistake, hasDoneMistake]);
 
     return { formAction, state };

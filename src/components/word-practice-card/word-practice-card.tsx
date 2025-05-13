@@ -31,7 +31,7 @@ export default function WordPracticeCard({
     const inputRef = useFocusInput();
 
     return (
-        <form action={formAction} className="w-full">
+        <form data-testid="word-practice-action-form" action={formAction} className="w-full">
             <div className="flex flex-col gap-16">
                 <TermDisplay term={term} />
                 <AnswerInput
