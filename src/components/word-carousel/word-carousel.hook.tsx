@@ -46,14 +46,16 @@ export const useWordCarousel = ({ categoryData }: UseWordCarouselType) => {
     }, []);
 
     const handleClick = useCallback(() => {
-        if (index === categoryData.cards.length - 1) {
-            sessionStorage.setItem('defaultIndex', "0");
-            setIndex(0);
-            setIsDone(true);
-        } else {
-            setIndex((prev) => prev + 1);
-        }
-    }, [index, categoryData.cards.length]);
+        setIndex((prevIndex) => {
+            if (prevIndex === categoryData.cards.length - 1) {
+                sessionStorage.setItem("defaultIndex", "0");
+                setIsDone(true);
+                return 0; // Reset index to 0
+            } else {
+                return prevIndex + 1; // Increment index
+            }
+        });
+    }, [categoryData.cards.length]);
 
     const handleCategoryPracticeRestart = useCallback(() => {
         setMistakesCount(0)
