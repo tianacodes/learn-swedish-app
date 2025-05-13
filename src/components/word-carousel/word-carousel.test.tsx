@@ -38,6 +38,23 @@ describe("WordCarousel", () => {
         });
     });
 
+    it("renders nothing when `currentCard` is null", () => {
+        (useWordCarousel as jest.Mock).mockReturnValueOnce({
+            currentCard: null, // Simulate no current card
+            isDone: false,
+            index: 0,
+            handleClick: mockHandleClick,
+            handleMistake: mockHandleMistake,
+            mistakesCount: 0,
+            handleCategoryPracticeRestart: mockHandleCategoryPracticeRestart,
+            isReady: true,
+        });
+
+        const { container } = render(<WordCarousel categoryData={mockCategoryData} />);
+
+        expect(container.firstChild).toBeNull(); // Ensure nothing is rendered
+    });
+
     it("renders the loading state when `isReady` is false", () => {
         (useWordCarousel as jest.Mock).mockReturnValueOnce({
             currentCard: mockCategoryData.cards[0],
@@ -78,26 +95,13 @@ describe("WordCarousel", () => {
             handleCategoryPracticeRestart: mockHandleCategoryPracticeRestart,
             isDone: true,
             mistakesCount: 1,
-            isReady: true
+            isReady: true,
         });
 
         render(<WordCarousel categoryData={mockCategoryData} />);
 
-        screen.debug(); // Log the rendered output
-
         expect(screen.getByTestId("finish-practice-screen")).toBeInTheDocument();
     });
-
-    // it("calls `handleClick` when the WordPracticeCard triggers it", () => {
-    //     render(<WordCarousel categoryData={mockCategoryData} />);
-
-    //     screen.debug(); // Log the rendered output to inspect the DOM
-
-    //     const nextButton = screen.getByTestId("submit-button");
-    //     fireEvent.click(nextButton);
-
-    //     expect(mockHandleClick).toHaveBeenCalled();
-    // });
 
     it("calls `handleCategoryPracticeRestart` when the FinishPracticeScreen triggers it", () => {
         (useWordCarousel as jest.Mock).mockReturnValueOnce({
@@ -108,7 +112,7 @@ describe("WordCarousel", () => {
             mistakesCount: 0,
             handleCategoryPracticeRestart: mockHandleCategoryPracticeRestart,
             isDone: true,
-            isReady: true
+            isReady: true,
         });
 
         render(<WordCarousel categoryData={mockCategoryData} />);
