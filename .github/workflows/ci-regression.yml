@@ -2,7 +2,6 @@ name: Regression Test Suite
 
 on:
   pull_request:
-    branches: [main, develop] # Run on PRs targeting main or develop
     types: [opened, synchronize, reopened] # Triggers on PR open, push to PR branch, or PR reopen
 jobs:
   # STAGE 1: Running unit tests for fast feedback
