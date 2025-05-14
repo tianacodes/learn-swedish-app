@@ -22,7 +22,7 @@ jobs:
   critical:
     name: Critical Tests Regression
     runs-on: ubuntu-latest
-    needs: unit_tests_regression
+    needs: unit_tests
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js environment
