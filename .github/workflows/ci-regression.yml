@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run Unit Tests (tagged for regression)
-        run: npm test:unit
+        run: npm run test:unit
   # STAGE 1: Running a subset of critical integration and e2e tests
   critical:
     name: Critical Tests Regression
@@ -32,4 +32,4 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run Critical Tests
-        run: npm test:integration #TODO: add here critical instead of all integration
+        run: npm run test:integration #TODO: add here critical instead of all integration
