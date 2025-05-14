@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react";
 import { useFocusInput } from "./input-ref.hook";
 import React from "react";
 
-describe("useFocusInput", () => {
+describe("@unit useFocusInput", () => {
     it("should return a ref object", () => {
         const { result } = renderHook(() => useFocusInput());
         expect(result.current).toHaveProperty("current");

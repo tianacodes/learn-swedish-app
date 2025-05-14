@@ -20,7 +20,7 @@ jest.mock('react', () => {
     };
 });
 
-describe('useWordPracticeCard', () => {
+describe('@unit useWordPracticeCard', () => {
     const mockHandleClick = jest.fn();
     const mockHandleMistake = jest.fn();
     const defaultProps: UseWordPracticeType = {

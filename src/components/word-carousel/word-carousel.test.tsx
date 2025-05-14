@@ -7,7 +7,7 @@ jest.mock("./word-carousel.hook", () => ({
     useWordCarousel: jest.fn(),
 }));
 
-describe("WordCarousel", () => {
+describe("@integration WordCarousel", () => {
     const mockCategoryData = {
         id: 1,
         name: "Test Category",

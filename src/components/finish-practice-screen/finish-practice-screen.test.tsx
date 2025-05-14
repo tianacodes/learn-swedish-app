@@ -11,7 +11,7 @@ jest.mock('next/link', () => {
     };
 });
 
-describe('FinishPracticeScreen', () => {
+describe('@unit FinishPracticeScreen', () => {
     const mockHandleCategoryPracticeRestart = jest.fn();
 
     beforeEach(() => {

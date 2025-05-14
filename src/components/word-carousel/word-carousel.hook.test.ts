@@ -1,7 +1,7 @@
 import { renderHook, act } from "@testing-library/react";
 import { useWordCarousel } from "./word-carousel.hook";
 
-describe("useWordCarousel", () => {
+describe("@unit useWordCarousel", () => {
     const mockCategoryData = {
         id: 1,
         name: "Test Category",

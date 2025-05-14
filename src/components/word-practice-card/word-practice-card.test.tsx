@@ -12,7 +12,7 @@ jest.mock("./input-ref.hook", () => ({
     useFocusInput: jest.fn(),
 }));
 
-describe("WordPracticeCard", () => {
+describe("@integration WordPracticeCard", () => {
     const mockHandleClick = jest.fn();
     const mockHandleMistake = jest.fn();
 

@@ -10,7 +10,7 @@ jest.mock('next/link', () => {
   };
 });
 
-describe('Navbar', () => {
+describe('@unit Navbar', () => {
   beforeEach(() => {
     render(<Navbar />);
   })

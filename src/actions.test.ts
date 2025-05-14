@@ -12,7 +12,7 @@ jest.mock("./db", () => ({
   },
 }));
 
-describe("checkInput", () => {
+describe("@unit checkInput", () => {
   const mockFormState = {
     message: "",
     status: "",
