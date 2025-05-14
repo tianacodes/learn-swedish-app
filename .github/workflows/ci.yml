@@ -1,0 +1,40 @@
+name: CI Tests
+
+on:
+  pull_request:
+    branches-ignore: [main, develop] # Ignore main and develop branches
+
+# on:
+#   push:
+#     branches: [main, develop] # Or your relevant branches
+#   pull_request:
+#     branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest # Use the latest Ubuntu runner
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+      # 1. Checkout your repository code so the workflow can access it
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Use the official checkout action (v4 is current as of writing)
+
+      # 2. Set up Node.js environment
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4 # Use the official setup-node action
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm" # Enable caching for npm dependencies to speed up subsequent runs
+
+      # 3. Install dependencies
+      # Using 'npm ci' is generally recommended for CI as it's faster and more reliable for clean installs based on package-lock.json
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Run your tests
+      - name: Run tests
+        run: npm test # This will execute "jest" as per your package.json

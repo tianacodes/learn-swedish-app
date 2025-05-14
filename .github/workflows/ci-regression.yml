@@ -1,0 +1,36 @@
+name: Regression Test Suite
+
+on:
+  pull_request:
+    branches: [main, develop] # Run on PRs targeting main or develop
+    types: [opened, synchronize, reopened] # Triggers on PR open, push to PR branch, or PR reopen
+jobs:
+  # STAGE 1: Running unit tests for fast feedback
+  unit_tests:
+    name: Unit Tests Regression
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install dependencies
+        run: npm install
+      - name: Run Unit Tests (tagged for regression)
+        run: npm test:unit
+  # STAGE 1: Running a subset of critical integration and e2e tests
+  critical:
+    name: Critical Tests Regression
+    runs-on: ubuntu-latest
+    needs: unit_tests_regression
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install dependencies
+        run: npm install
+      - name: Run Critical Tests
+        run: npm test:integration #TODO: add here critical instead of all integration

@@ -1,4 +1,4 @@
-import { WordCarousel } from "@/components/word-carousel";
+import { WordCarousel } from "@/components/word-carousel/word-carousel";
 import { db } from "@/db";
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import Link from "next/link";
