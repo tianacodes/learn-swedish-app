@@ -1,9 +1,10 @@
 name: CI Tests
 
 on:
+  push:
+    branches: [main, develop] # Or your relevant branches
   pull_request:
-    branches: [main, develop] # Run on PRs targeting main or develop
-    types: [opened, synchronize, reopened] # Triggers on PR open, push to PR branch, or PR reopen
+    branches: [main, develop]
 
 jobs:
   test:
