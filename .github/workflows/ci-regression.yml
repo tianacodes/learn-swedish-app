@@ -2,7 +2,6 @@ name: Regression Test Suite
 
 on:
   pull_request:
-    branches: [main, develop] # Run on PRs targeting main or develop
     types: [opened, synchronize, reopened] # Triggers on PR open, push to PR branch, or PR reopen
 jobs:
   # STAGE 1: Running unit tests for fast feedback
@@ -18,12 +17,20 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run Unit Tests (tagged for regression)
-        run: npm test:unit
+        run: npm run test:unit -- --json --outputFile=./reports/jest-results.json || true
+      - name: Upload Reports and Check Outcome
+        uses: ./.github/actions/report-artifacts
+        with:
+          html-report-path: ./reports/html
+          coverage-report-path: ./reports/coverage/lcov-report
+          test-step-id: jest_tests
+          html-artifact-name: unit-jest-html-report
+          test-results-json-path: ./reports/jest-results.json
   # STAGE 1: Running a subset of critical integration and e2e tests
   critical:
     name: Critical Tests Regression
     runs-on: ubuntu-latest
-    needs: unit_tests_regression
+    needs: unit_tests
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js environment
@@ -33,4 +40,12 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run Critical Tests
-        run: npm test:integration #TODO: add here critical instead of all integration
+        run: npm run test:integration -- --json --outputFile=./reports/jest-results.json || true
+      - name: Upload Reports and Check Outcome
+        uses: ./.github/actions/report-artifacts
+        with:
+          html-report-path: ./reports/html
+          coverage-report-path: ./reports/coverage/lcov-report
+          test-step-id: jest_tests_critical
+          html-artifact-name: critical-jest-html-report
+          test-results-json-path: ./reports/jest-results.json

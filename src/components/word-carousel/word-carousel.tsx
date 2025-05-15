@@ -22,9 +22,9 @@ export const WordCarousel = ({
         isReady
     } = useWordCarousel({ categoryData });
 
-    if (!currentCard) {
-        return null;
-    }
+    // if (!currentCard) {
+    //     return null;
+    // }
 
     if (!isReady) return <div>Loading...</div>;
 
