@@ -13,6 +13,9 @@ inputs:
   html-artifact-name:
     description: "Name for the HTML report artifact"
     required: true
+  test-results-json-path:
+    description: "Path to Jest JSON results file"
+    required: true
 runs:
   using: "composite"
   steps:

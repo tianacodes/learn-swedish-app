@@ -25,6 +25,7 @@ jobs:
           coverage-report-path: ./reports/coverage/lcov-report
           test-step-id: jest_tests
           html-artifact-name: unit-jest-html-report
+          test-results-json-path: ./reports/jest-results.json
   # STAGE 1: Running a subset of critical integration and e2e tests
   critical:
     name: Critical Tests Regression
@@ -47,3 +48,4 @@ jobs:
           coverage-report-path: ./reports/coverage/lcov-report
           test-step-id: jest_tests_critical
           html-artifact-name: critical-jest-html-report
+          test-results-json-path: ./reports/jest-results.json
