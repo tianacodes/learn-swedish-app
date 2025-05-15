@@ -40,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run Critical Tests
-        run: npm run test:integration #TODO: add here critical instead of all integration
+        run: npm run test:integration -- --json --outputFile=./reports/jest-results.json || true
       - name: Upload Reports and Check Outcome
         uses: ./.github/actions/report-artifacts
         with:
