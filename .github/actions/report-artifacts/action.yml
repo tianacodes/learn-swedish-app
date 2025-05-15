@@ -23,9 +23,17 @@ runs:
         name: ${{ inputs.html-artifact-name }}
         path: ${{ inputs.html-report-path }}
         retention-days: 7
-    - name: Check Test Outcome
-      if: always() && steps[inputs.test-step-id].outcome == 'failure'
-      run: |
-        echo "Jest tests failed!"
-        exit 1
+    - name: Fail if tests failed
+      if: always()
       shell: bash
+      run: |
+        if [ -f "${{ inputs.test-results-json-path }}" ]; then
+          numFailed=$(jq '.numFailedTests' "${{ inputs.test-results-json-path }}")
+          if [ "$numFailed" -gt 0 ]; then
+            echo "Jest tests failed: $numFailed test(s) failed."
+            exit 1
+          fi
+        else
+          echo "Test results file not found: ${{ inputs.test-results-json-path }}"
+          exit 1
+        fi
