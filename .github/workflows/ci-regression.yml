@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: jest-html-report
-          path: ./reports/html/jest_report.html
+          path: ./reports/html
           retention-days: 7
       - name: Upload JUnit XML Report Artifact
         if: always()
