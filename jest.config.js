@@ -33,6 +33,38 @@ const customJestConfig = {
     // '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
     //   '<rootDir>/__mocks__/fileMock.js', // You'd create this mock file
   },
+
+  // --- REPORTERS CONFIGURATION ---
+  reporters: [
+    "default", // This keeps the default Jest console output
+    [
+      "jest-junit", // For JUnit XML output
+      {
+        outputDirectory: "./reports/junit", // Directory for JUnit XML files
+        outputName: "jest-junit.xml", // Name of the JUnit XML file
+        ancestorSeparator: " › ",
+        usePathForSuiteName: "true",
+        classNameTemplate: "{classname}",
+        titleTemplate: "{title}",
+      },
+    ],
+    [
+      "jest-html-reporters", // For HTML reports
+      {
+        publicPath: "./reports/html", // Directory for HTML report
+        filename: "jest_report.html", // Name of the HTML report file
+        expand: true, // Expand all failed tests by default in the HTML report
+        // You can add more options:
+        // pageTitle: "My Project Test Report",
+        // logo: "path/to/logo.png",
+      },
+    ],
+    // If you need Jest's native JSON output specifically for an Action like dorny/test-reporter,
+    // you typically achieve this via CLI flags when running Jest in your GitHub Action,
+    // e.g., `jest --json --outputFile=./reports/jest-results.json`
+    // It's not usually added as a "reporter" here in the config for that purpose.
+  ],
+
   collectCoverageFrom: [
     "**/*.{js,jsx,ts,tsx}", // All JS/TS files
     // --- EXCLUDE DEFINITION AND TYPE-ONLY FILES ---
