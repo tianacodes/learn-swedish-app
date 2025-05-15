@@ -45,7 +45,7 @@ export const WordCarousel = ({
                             </p>
                         </div>
                         <WordPracticeCard
-                            key={currentCard.id}
+                            key="random-key"
                             categorySlug={categoryData.slug}
                             term={currentCard.term}
                             answer={currentCard.answer}
