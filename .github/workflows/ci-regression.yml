@@ -19,7 +19,7 @@ jobs:
       - name: Run Unit Tests (tagged for regression)
         run: npm run test:unit -- --json --outputFile=./reports/jest-results.json || true
       - name: Report Test Results (dorny/test-reporter)
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.8.0
         if: always()
         with:
           name: Jest Test Report
