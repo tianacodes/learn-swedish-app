@@ -27,8 +27,8 @@ jobs:
         if: always()
         with:
           name: Jest Test Report
-          path: ./reports/jest-results.json
-          reporter: jest
+          path: ./reports/junit/jest-junit.xml
+          reporter: junit
           fail-on-error: "true"
       - name: Upload HTML Test Report Artifact
         if: always()
