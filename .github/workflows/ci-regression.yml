@@ -22,20 +22,12 @@ jobs:
         run: |
           ls -lh ./reports
           cat ./reports/jest-results.json || echo "No output file found"
-      - name: Report Test Results (dorny/test-reporter)
-        uses: dorny/test-reporter@v1.8.0
-        if: always()
-        with:
-          name: Jest Test Report
-          path: ./reports/junit/jest-junit.xml
-          reporter: junit
-          fail-on-error: "true"
       - name: Upload HTML Test Report Artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: jest-html-report
-          path: ./reports/html
+          path: ./reports/html/jest_report.html
           retention-days: 7
       - name: Upload JUnit XML Report Artifact
         if: always()
