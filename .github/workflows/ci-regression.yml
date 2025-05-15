@@ -18,6 +18,10 @@ jobs:
         run: npm install
       - name: Run Unit Tests (tagged for regression)
         run: npm run test:unit -- --json --outputFile=./reports/jest-results.json || true
+      - name: Debug Report File
+        run: |
+          ls -lh ./reports
+          cat ./reports/jest-results.json || echo "No output file found"
       - name: Report Test Results (dorny/test-reporter)
         uses: dorny/test-reporter@v1.8.0
         if: always()
