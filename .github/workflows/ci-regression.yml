@@ -45,5 +45,5 @@ jobs:
         with:
           html-report-path: ./reports/html
           coverage-report-path: ./reports/coverage/lcov-report
-          test-step-id: jest_tests
+          test-step-id: jest_tests_critical
           html-artifact-name: critical-jest-html-report
