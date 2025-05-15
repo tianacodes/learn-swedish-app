@@ -10,6 +10,9 @@ inputs:
   test-step-id:
     description: "ID of the test step to check outcome"
     required: true
+  html-artifact-name:
+    description: "Name for the HTML report artifact"
+    required: true
 runs:
   using: "composite"
   steps:
