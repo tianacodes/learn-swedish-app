@@ -24,7 +24,7 @@ jobs:
         with:
           name: Jest Test Report
           path: ./reports/jest-results.json
-          # reporter: jest-json
+          reporter: jest
           fail-on-error: "true"
       - name: Upload HTML Test Report Artifact
         if: always()
