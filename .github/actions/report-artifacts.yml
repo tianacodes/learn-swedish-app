@@ -1,0 +1,35 @@
+name: "Upload Test Artifacts and Check Outcome"
+description: "Uploads HTML and coverage reports, and checks test outcome"
+inputs:
+  html-report-path:
+    description: "Path to HTML test report"
+    required: true
+  coverage-report-path:
+    description: "Path to coverage report"
+    required: true
+  test-step-id:
+    description: "ID of the test step to check outcome"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Upload HTML Test Report Artifact
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: jest-html-report
+        path: ${{ inputs.html-report-path }}
+        retention-days: 7
+    - name: Upload Coverage Report Artifact (HTML)
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: ${{ inputs.coverage-report-path }}
+        retention-days: 7
+    - name: Check Test Outcome
+      if: always() && steps[inputs.test-step-id].outcome == 'failure'
+      run: |
+        echo "Jest tests failed!"
+        exit 1
+      shell: bash
