@@ -75,6 +75,7 @@ const customJestConfig = {
     // --- EXCLUDE VENDOR/GENERATED/CONFIGS ---
     "!**/node_modules/**",
     "!<rootDir>/out/**",
+    "!<rootDir>/reports/**",
     "!<rootDir>/.next/**",
     "!<rootDir>/coverage/**",
     "!<rootDir>/jest.setup.{js,jsx,ts,tsx}",
