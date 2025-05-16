@@ -27,23 +27,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        env:
-          CI: true
-        run: |
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "Running tests relevant to PR changes against ${{ github.base_ref }}..."
-            npm run test -- --changedSince="origin/${{ github.base_ref }}"
-          elif [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
-            echo "Running all tests on main branch..."
-            npm run test:ci
-          else
-            # Optional: For pushes to feature branches (not yet PRs against main)
-            # You could run all tests, or tests changed since main
-            echo "Running tests relevant to feature branch changes against main..."
-            # Ensure main is up-to-date locally if it wasn't the base of the checkout
-            # git fetch origin main:refs/remotes/origin/main --no-tags --depth=1 # Usually fetch-depth:0 covers this
-            npm run test:ci -- --changedSince="origin/main"
-          fi
+        run: npm run test -- --changedSince="origin/${{ github.base_ref }}"
 
       - name: Upload test results
         if: always()
