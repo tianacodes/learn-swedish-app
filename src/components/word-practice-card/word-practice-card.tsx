@@ -33,7 +33,7 @@ export default function WordPracticeCard({
     return (
         <form data-testid="word-practice-action-form" action={formAction} className="w-full">
             <div className="flex flex-col gap-16">
-                <TermDisplay term={term} />
+                {/* <TermDisplay term={term} /> */}
                 <AnswerInput
                     inputRef={inputRef}
                     message={state.message}
